@@ -27,7 +27,7 @@ app.post("/webhook", (req, res) => {
     return res.send("ok");
   }
 
-  const TOKEN = "8167827099:AAHmTud_c0ysSrqqIP2iL-m5ekEyH-Koucc";
+  const TOKEN = "SEU_TOKEN_AQUI";
   fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
