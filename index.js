@@ -20,17 +20,15 @@ app.post("/webhook", (req, res) => {
   let texto = "";
 
   if (msg.video) {
-    texto = "🎬 VÍDEO\nfile_id: `" + msg.video.file_id + "`";
+    texto = "🎬 VÍDEO\nfile_id: <code>" + msg.video.file_id + "</code>";
   } else if (msg.photo) {
     const melhor = msg.photo[msg.photo.length - 1];
-    texto = "🖼️ FOTO\nfile_id: `" + melhor.file_id + "`";
-  } else {
-    return res.send("ok");
+    texto = "🖼️ FOTO\nfile_id: <code>" + melhor.file_id + "</code>";
   }
 
   const TOKEN = "8167827099:AAHmTud_c0ysSrqqIP2iL-m5ekEyH-Koucc";
-  const body = JSON.stringify({ chat_id: chatId, text: texto, parse_mode: "Markdown" });
-
+  const body = JSON.stringify({ chat_id: chatId, text: texto, parse_mode: "HTML" });
+  
   const options = {
     hostname: "api.telegram.org",
     path: `/bot${TOKEN}/sendMessage`,
