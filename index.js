@@ -6,12 +6,14 @@ app.get("/", (req, res) => res.send("Bot Ativo"));
 
 app.post("/webhook", (req, res) => {
   const data = req.body;
+  console.log("Recebido:", JSON.stringify(data));
+
   if (!data.message) return res.send("ok");
 
   const msg = data.message;
   const chatId = msg.chat.id;
+  console.log("Chat ID:", chatId);
 
-  // 🔒 Só você pode usar
   if (chatId !== 1723287087) return res.send("ok");
 
   let texto = "";
