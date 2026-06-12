@@ -10,22 +10,26 @@ app.post("/webhook", (req, res) => {
 
   const msg = data.message;
   const chatId = msg.chat.id;
+
+  // 🔒 Só você pode usar
+  if (chatId !== 1723287087) return res.send("ok");
+
   let texto = "";
 
   if (msg.video) {
-    texto = "🎬 VÍDEO\nfile_id: " + msg.video.file_id;
+    texto = "🎬 VÍDEO\nfile_id: `" + msg.video.file_id + "`";
   } else if (msg.photo) {
     const melhor = msg.photo[msg.photo.length - 1];
-    texto = "🖼️ FOTO\nfile_id: " + melhor.file_id;
+    texto = "🖼️ FOTO\nfile_id: `" + melhor.file_id + "`";
   } else {
     return res.send("ok");
   }
 
-  const TOKEN = "8623959141:AAFDzi1UJ7PbDCWoE2U2p_EtjEbokYabN1M";
+  const TOKEN = "8167827099:AAFs0JPtMLC9615GKo8JuPQ2ke-JvgvkIkw";
   fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: chatId, text: texto })
+    body: JSON.stringify({ chat_id: chatId, text: texto, parse_mode: "Markdown" })
   });
 
   res.send("ok");
