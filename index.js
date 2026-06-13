@@ -26,7 +26,7 @@ app.post("/webhook", (req, res) => {
     texto = "🖼️ FOTO\nfile_id: <code>" + melhor.file_id + "</code>";
   }
 
-  const TOKEN = "8167827099:AAHmTud_c0ysSrqqIP2iL-m5ekEyH-Koucc";
+  const TOKEN = "8167827099:AAHpzcaahW1gUV7Wy0bc0IIcFO45SKAhrP0";
   const body = JSON.stringify({ chat_id: chatId, text: texto, parse_mode: "HTML" });
   
   const options = {
